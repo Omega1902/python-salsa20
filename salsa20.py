@@ -8,15 +8,21 @@ Copyright (c) 2013 Keybase
 Python module and ctypes bindings
 """
 
-import imp
 import sys
 
 from ctypes import (cdll,
                     c_char_p, c_int, c_uint64,
                     create_string_buffer)
 
-_salsa20 = cdll.LoadLibrary(imp.find_module('_salsa20')[1])
+module_name = '_salsa20'
+if sys.version_info < (3, 5):
+    import imp
+    module_path = imp.find_module(module_name)[1]
+else:
+    import importlib.util
+    module_path = importlib.util.find_spec(module_name).origin
 
+_salsa20 = cdll.LoadLibrary(module_path)
 
 _stream_salsa20 = _salsa20.exp_stream_salsa20
 _stream_salsa20.argtypes = [  c_char_p,  # unsigned char * c

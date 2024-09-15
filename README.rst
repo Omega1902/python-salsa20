@@ -3,7 +3,7 @@ python-salsa20
 
 Bindings for the NaCL implementation of Salsa20 and XSalsa20 by D. J. Bernstein (taken from libsodium).
 
-Compatible with Python 2.6, 2.7 and 3.3.
+Compatible with Python 2.6, 2.7 and 3.3 - 3.12.
 
 The library performs a self-test at each import.
 
